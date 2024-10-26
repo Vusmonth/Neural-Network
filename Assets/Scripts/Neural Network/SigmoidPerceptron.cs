@@ -47,6 +47,7 @@ public class SigmoidPerceptron : MonoBehaviour
     {
         SimoidParams Params = new SimoidParams();
 
+        if (obstaclesData.obstacles[0] == null) return;
         Params.obstacle_d = obstaclesData.obstacles[0].transform.position.x + 3;
         Params.obstacle_y = obstaclesData.obstacles[0].transform.position.y;
         Params.obstacle_h = obstaclesData.obstacles[0].transform.localScale.y;

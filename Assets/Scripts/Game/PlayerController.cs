@@ -19,14 +19,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnDeath()
     {
-        gameObject.SetActive(false);
         Epoch epochData = new Epoch();
         epochData.id = transform.name;
         epochData.playerScore = score;
         epochData.weights = gameObject.GetComponent<SigmoidPerceptron>().weightsInputHidden;
 
         epochSaveManager.SaveData(epochData);
-
+        gameObject.SetActive(false);
     }
 
     public void GetPoint()

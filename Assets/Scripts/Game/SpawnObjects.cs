@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class SpawnObjects : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject prefab;
-    public GameObject[] obstacles;
+    [ItemCanBeNull] public GameObject[] obstacles;
     public float velocity;
     [Range(0f, 25f)]
     public float distanceToSpawn;

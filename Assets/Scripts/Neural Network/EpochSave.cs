@@ -20,37 +20,31 @@ public class EpochSave : MonoBehaviour
     public List<Epoch> EpochDataList = new List<Epoch>();
     public int totalPlayers;
     public bool gameEnd;
-    public GameObject retryModal;
-    public TextMeshProUGUI finalScore;
-    public TextMeshProUGUI scoreInGame;
     private float score;
-    public AudioSource audioSrc;
 
     void Start()
     {
         totalPlayers = GameObject.FindGameObjectsWithTag("Player").Length;
-        DontDestroyOnLoad(audioSrc.gameObject);
     }
 
     private void FixedUpdate()
     {
         gameEnd = GameObject.FindGameObjectsWithTag("Player").Length == 0;
-        retryModal.SetActive(gameEnd);
-        try
+        if (gameEnd)
         {
-            score = GameObject.FindGameObjectsWithTag("Player").Last().GetComponent<PlayerController>().score * 10;
+            RestartGame();
         }
-        catch (Exception) { }
-
-        finalScore.text = ((Int32)score).ToString();
-        scoreInGame.text = ((Int32)score).ToString();
-
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
 
+        try
+        {
+            score = GameObject.FindGameObjectsWithTag("Player").Last().GetComponent<PlayerController>().score * 10;
+        }
+        catch (Exception) { }
     }
 
     // Update is called once per frame
